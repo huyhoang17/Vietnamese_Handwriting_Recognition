@@ -32,7 +32,7 @@ TODO
 Reference
 ---
 
-- Colab Notebook: https://github.com/huyhoang17/Colab_Temporary/blob/master/Training_CTC_Vietnamese_Recognition_10epochs.ipynb
+Colab Notebook: https://github.com/huyhoang17/Colab_Temporary/blob/master/Training_CTC_Vietnamese_Recognition_10epochs.ipynb
 
 CTC loss:
 - https://www.dlology.com/blog/how-to-train-a-keras-model-to-recognize-variable-length-text/
