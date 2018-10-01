@@ -9,6 +9,12 @@ Dataset
 Command
 ---
 
+```
+export PYTHONPATH=path-to-project
+
+cp src/example_config.py src/config.py
+```
+
 Result
 ---
 
