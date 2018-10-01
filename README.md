@@ -22,6 +22,8 @@ TODO
 ---
 
 - Add Dockerfile
+- Deploy simple demo with Tensorflow Serving
+- Simple API
 - Refactor code
 - Add Visual Callback
 - Train code with Colab's TPU
