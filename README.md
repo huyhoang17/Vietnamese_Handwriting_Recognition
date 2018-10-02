@@ -18,6 +18,10 @@ cp src/example_config.py src/config.py
 Result
 ---
 
+- Model trained with 25 epochs: https://github.com/huyhoang17/Colab_Temporary/blob/master/Training_CTC_Vietnamese_Recognition_25epochs.ipynb
+
+- [Overfitting model] Model trained with 10 epochs (initial weights from 25 epochs), reduced LR from 0.02 to 0.005: https://github.com/huyhoang17/Colab_Temporary/blob/master/Training_CTC_Vietnamese_Recognition_25epochs.ipynb
+
 TODO
 ---
 
@@ -26,13 +30,28 @@ TODO
 - Simple API
 - Refactor code
 - Add Visual Callback
-- Train code with Colab's TPU
+- Train code with Colab's TPU?
 - Convert to Pytorch code
+
+Prevent Overfitting
+---
+
+- Data Augmentation
+- Simplifly the model
+- Early Stopping
+- Cross Validation
+- Dropout (NN)
+- Use Transfer Learing!
+- ...
 
 Reference
 ---
 
-Colab Notebook: https://github.com/huyhoang17/Colab_Temporary/blob/master/Training_CTC_Vietnamese_Recognition_10epochs.ipynb
+Colab Notebook:
+- https://github.com/huyhoang17/Colab_Temporary/blob/master/Training_CTC_Vietnamese_Recognition_10epochs.ipynb
+
+Papers
+- https://arxiv.org/pdf/1804.01527.pdf
 
 CTC loss:
 - https://www.dlology.com/blog/how-to-train-a-keras-model-to-recognize-variable-length-text/
@@ -49,3 +68,7 @@ Explained ctc loss:
 
 CTC loss param: 
 - https://kur.deepgram.com/specification.html#using-ctc-loss
+
+Overfitting
+- https://hackernoon.com/memorizing-is-not-learning-6-tricks-to-prevent-overfitting-in-machine-learning-820b091dc42
+- https://elitedatascience.com/overfitting-in-machine-learning
