@@ -20,7 +20,7 @@ Result
 
 - Model trained with 25 epochs: https://github.com/huyhoang17/Colab_Temporary/blob/master/Training_CTC_Vietnamese_Recognition_25epochs.ipynb
 
-- [Overfitting model] Model trained with 10 epochs (initial weights from 25 epochs), reduced LR from 0.02 to 0.005: https://github.com/huyhoang17/Colab_Temporary/blob/master/Training_CTC_Vietnamese_Recognition_25epochs.ipynb
+- [Overfitting model] Model trained with 10 epochs (initial weights from 25 epochs), reduced LR from 0.02 to 0.005: https://github.com/huyhoang17/Colab_Temporary/blob/master/%5BOverfitting%5DTraining_CTC_Vietnamese_Recognition_40epochs.ipynb
 
 TODO
 ---
