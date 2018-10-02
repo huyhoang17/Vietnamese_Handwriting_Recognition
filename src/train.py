@@ -3,6 +3,7 @@ import pickle
 from keras.callbacks import ModelCheckpoint, EarlyStopping
 from keras.optimizers import SGD
 
+from src.callbacks import VizCallback
 import src.config as cf
 from src.models import CRNN_model
 from src.loaders import TextSequenceGenerator
@@ -47,6 +48,9 @@ def train():
     earlystop = EarlyStopping(
         monitor='val_loss', min_delta=0, patience=10, verbose=0, mode='min'
     )
+    vis = VizCallback(
+        y_func, test_set, text_size=256, num_display_words=6
+    )
 
     # model = tf.contrib.tpu.keras_to_tpu_model(
     # model,
@@ -58,6 +62,6 @@ def train():
                         epochs=cf.NO_EPOCHS,
                         validation_data=test_set,
                         validation_steps=no_val_set // cf.BATCH_SIZE,
-                        callbacks=[ckp, earlystop])
+                        callbacks=[ckp, earlystop, vis])
 
     return model, y_func

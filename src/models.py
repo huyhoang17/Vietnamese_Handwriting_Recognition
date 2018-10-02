@@ -83,6 +83,7 @@ def CRNN_model():
     model = Model(inputs=[input_data, labels,
                           input_length, label_length], outputs=loss_out)
 
+    # input --> output
     y_func = K.function([input_data], [y_pred])
 
     return model, y_func

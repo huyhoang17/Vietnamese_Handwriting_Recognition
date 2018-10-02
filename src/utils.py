@@ -3,6 +3,8 @@ import itertools
 import numpy as np
 from keras import backend as K
 
+import src.config as cf
+
 
 def labels_to_text(letters, labels):
     return ''.join(list(map(lambda x: letters[x] if x < len(letters) else "", labels)))  # noqa
@@ -12,12 +14,23 @@ def text_to_labels(letters, text):
     return list(map(lambda x: letters.index(x), text))
 
 
+def decode_batch_y_func(y_func, word_batch):
+    out = y_func([word_batch])[0]
+    ret = []
+    for j in range(out.shape[0]):
+        out_best = list(np.argmax(out[j, 2:], 1))
+        out_best = [k for k, g in itertools.groupby(out_best)]
+        outstr = labels_to_text(cf.CHARS_, out_best)
+        ret.append(outstr)
+    return ret
+
+
 def decode_batch(out):
     ret = []
     for j in range(out.shape[0]):
         out_best = list(np.argmax(out[j, 2:], 1))
         out_best = [k for k, g in itertools.groupby(out_best)]
-        outstr = labels_to_text(out_best)
+        outstr = labels_to_text(cf.CHARS_, out_best)
         ret.append(outstr)
     return ret
 

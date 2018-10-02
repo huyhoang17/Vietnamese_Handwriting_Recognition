@@ -124,4 +124,4 @@ class TextSequenceGenerator(keras.utils.Sequence):
         }
         outputs = {'ctc': np.zeros([size])}
 
-        return (inputs, outputs)
+        return inputs, outputs
