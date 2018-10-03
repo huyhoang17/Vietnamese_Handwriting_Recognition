@@ -154,6 +154,8 @@ def gen_data(path_dir, img, fn, reversed_img=True,
 
     imgs = []
     fns = []
+    name = fn.split('.')[0]
+    suffix = fn.split('.')[1]
     for ind in range(1, cf.NO_GEN_IMAGES + 1):
         img_np = translate(img)
         img_np = rotate(img_np)
@@ -162,8 +164,7 @@ def gen_data(path_dir, img, fn, reversed_img=True,
         img_np = dilate(img_np)
         # img_np = erode(img_np)
         imgs.append(img)
-        name = fn.split('.')[0]
-        suffix = fn.split('.')[1]
+
         fn_new = name + "_{}".format(ind) + '.' + suffix
         if is_save:
             scipy.misc.imsave(os.path.join(
