@@ -4,6 +4,8 @@ from keras import backend as K
 # constans
 CHARS = '\ !%"#&\'()*+,-./0123456789:;?AÁẢÀÃẠÂẤẨẦẪẬĂẮẲẰẴẶBCDĐEÉẺÈẼẸÊẾỂỀỄỆFGHIÍỈÌĨỊJKLMNOÓỎÒÕỌÔỐỔỒỖỘƠỚỞỜỠỢPQRSTUÚỦÙŨỤƯỨỬỪỮỰVWXYÝỶỲỸỴZaáảàãạâấẩầẫậăắẳằẵặbcdđeéẻèẽẹêếểềễệfghiíỉìĩịjklmnoóỏòõọôốổồỗộơớởờỡợpqrstuúủùũụưứửừữựvwxyýỷỳỹỵz'  # noqa
 CHARS_ = [char for char in CHARS]
+PIXEL_INDEX = 127
+NO_GEN_IMAGES = 10
 
 # sample params
 TRAIN_SIZE = 0.95
@@ -29,6 +31,7 @@ TIME_DENSE_SIZE = 256
 RNN_SIZE = 256
 
 # paths
+SAMPLES = "path-to-samples-data-dir"
 
 # naming
 
