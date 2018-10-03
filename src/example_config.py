@@ -1,3 +1,5 @@
+import os
+
 from keras import backend as K
 
 
@@ -5,7 +7,7 @@ from keras import backend as K
 CHARS = '\ !%"#&\'()*+,-./0123456789:;?AÁẢÀÃẠÂẤẨẦẪẬĂẮẲẰẴẶBCDĐEÉẺÈẼẸÊẾỂỀỄỆFGHIÍỈÌĨỊJKLMNOÓỎÒÕỌÔỐỔỒỖỘƠỚỞỜỠỢPQRSTUÚỦÙŨỤƯỨỬỪỮỰVWXYÝỶỲỸỴZaáảàãạâấẩầẫậăắẳằẵặbcdđeéẻèẽẹêếểềễệfghiíỉìĩịjklmnoóỏòõọôốổồỗộơớởờỡợpqrstuúủùũụưứửừữựvwxyýỷỳỹỵz'  # noqa
 CHARS_ = [char for char in CHARS]
 PIXEL_INDEX = 127
-NO_GEN_IMAGES = 10
+NO_GEN_IMAGES = 2**5
 
 # sample params
 TRAIN_SIZE = 0.95
@@ -32,16 +34,10 @@ RNN_SIZE = 256
 
 # paths
 SAMPLES = "path-to-samples-data-dir"
+BASE_DATA = "../data"
+RAW_DATA = os.path.join(BASE_DATA, "vn_handwriting_data")
+PP_DATA = os.path.join(BASE_DATA, "pp_vn_handwriting_data")
+GEN_DATA = os.path.join(BASE_DATA, "gen_data")
+LABELS = os.path.join(BASE_DATA, 'path-to-transcription.pk')
 
 # naming
-
-"""
-data
-├── words
-│   ├── a01
-│   ├── a02
-│   ├── a03
-│   ├── a04
-│   ├── a05
-...
-"""
