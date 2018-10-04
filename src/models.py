@@ -42,15 +42,11 @@ def CRNN_model():
     inner = MaxPooling2D(pool_size=(2, 2), name='max5')(
         inner)
 
-    # conv_to_rnn_dims = (1150 // (2 ** 2),
-    #                     (32 // (2 ** 2)) * 16)
     conv_to_rnn_dims = (256, 572)
-    print(conv_to_rnn_dims)
 
     inner = Reshape(target_shape=conv_to_rnn_dims, name='reshape')(inner)
 
     # cuts down input size going into RNN:
-    # TIME_DENSE_SIZE = 256
     inner = Dense(cf.TIME_DENSE_SIZE, activation=act, name='dense1')(inner)
 
     gru_1 = GRU(cf.RNN_SIZE, return_sequences=True,
@@ -64,7 +60,6 @@ def CRNN_model():
                  kernel_initializer='he_normal', name='gru2_b')(gru1_merged)
 
     # transforms RNN output to character activations:
-    # no unique labels
     inner = Dense(cf.NO_LABELS, kernel_initializer='he_normal',
                   name='dense2')(concatenate([gru_2, gru_2b]))
     y_pred = Activation('softmax', name='softmax')(inner)

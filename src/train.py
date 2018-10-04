@@ -14,7 +14,7 @@ logger = get_logger(__name__)
 
 def train():
 
-    with open('path-to-transcription.pk', 'rb') as f:  # noqa
+    with open(cf.TRANSCRIPTION, 'rb') as f:
         data = pickle.load(f)
     no_samples = len(data)
     no_train_set = int(no_samples * cf.TRAIN_SIZE)
