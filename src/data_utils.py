@@ -16,10 +16,10 @@ def check_eq(img, img2):
 
 
 def crop(img):
-    y_min = np.min(np.where(img > cf.PIXEL_INDEX)[0])
-    y_max = np.max(np.where(img > cf.PIXEL_INDEX)[0])
-    x_min = np.min(np.where(img > cf.PIXEL_INDEX)[1])
-    x_max = np.max(np.where(img > cf.PIXEL_INDEX)[1])
+    y_min = np.min(np.where(img < cf.PIXEL_INDEX)[0])
+    y_max = np.max(np.where(img < cf.PIXEL_INDEX)[0])
+    x_min = np.min(np.where(img < cf.PIXEL_INDEX)[1])
+    x_max = np.max(np.where(img < cf.PIXEL_INDEX)[1])
     img = img[y_min:y_max, x_min:x_max]
 
     return img
@@ -142,12 +142,13 @@ def erode(img, erosion_prob=0.5, erosion_srate=1, erosion_rrate=1.2):
 
 def gen_data(path_dir, img, fn, reversed_img=True,
              is_save=False, return_img=False):
-    if not isinstance(img, np.ndarray):
-        img = cv2.imread(img, cv2.IMREAD_GRAYSCALE)
-    elif isinstance(img, Image):
-        img = Image.fromarray(img)
+    """
+    :param path_dir: path dir to save image
+    :param img: ndarray image
+    :param fn: main filename
+    """
 
-    logger.info("size: ", img.shape)
+    logger.info("size: %s", img.shape)
     if reversed_img:
         # convert from (bg: w, text: b) to (bg: b, text: w)
         img = 255 - img
@@ -165,7 +166,7 @@ def gen_data(path_dir, img, fn, reversed_img=True,
         # img_np = erode(img_np)
         imgs.append(img_np)
 
-        fn_new = name + "_{}".format(ind) + '.' + suffix
+        fn_new = "{}_{}.{}".format(name, ind, suffix)
         if is_save:
             scipy.misc.imsave(os.path.join(
                 path_dir, fn_new), img_np

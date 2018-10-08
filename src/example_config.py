@@ -1,8 +1,3 @@
-import os
-
-from keras import backend as K
-
-
 # constans
 CHARS = '\ !%"#&\'()*+,-./0123456789:;?AÁẢÀÃẠÂẤẨẦẪẬĂẮẲẰẴẶBCDĐEÉẺÈẼẸÊẾỂỀỄỆFGHIÍỈÌĨỊJKLMNOÓỎÒÕỌÔỐỔỒỖỘƠỚỞỜỠỢPQRSTUÚỦÙŨỤƯỨỬỪỮỰVWXYÝỶỲỸỴZaáảàãạâấẩầẫậăắẳằẵặbcdđeéẻèẽẹêếểềễệfghiíỉìĩịjklmnoóỏòõọôốổồỗộơớởờỡợpqrstuúủùũụưứửừữựvwxyýỷỳỹỵz'  # noqa
 CHARS_ = [char for char in CHARS]
@@ -16,10 +11,12 @@ IMAGE_SIZE = (1150, 32)
 IMG_W, IMG_H = IMAGE_SIZE
 NO_CHANNELS = 1
 
-if K.image_data_format() == 'channels_first':
-    INPUT_SHAPE = (NO_CHANNELS, IMG_W, IMG_H)
-else:
-    INPUT_SHAPE = (IMG_W, IMG_H, NO_CHANNELS)
+# if K.image_data_format() == 'channels_first':
+#     INPUT_SHAPE = (NO_CHANNELS, IMG_W, IMG_H)
+# else:
+#     INPUT_SHAPE = (IMG_W, IMG_H, NO_CHANNELS)
+INPUT_SHAPE = (IMG_W, IMG_H, NO_CHANNELS)
+IMG_BG_TEXT = ("black", "white")
 
 # model params
 NO_EPOCHS = 25
@@ -33,11 +30,12 @@ TIME_DENSE_SIZE = 256
 RNN_SIZE = 256
 
 # paths
-SAMPLES = "path-to-samples-data-dir"
-BASE_DATA = "../data"
-RAW_DATA = os.path.join(BASE_DATA, "vn_handwriting_data")
-PP_DATA = os.path.join(BASE_DATA, "pp_vn_handwriting_data")
-GEN_DATA = os.path.join(BASE_DATA, "gen_data")
-LABELS = os.path.join(BASE_DATA, 'path-to-transcription.pk')
+BASE_DATA = ""
+SAMPLES_DATA = ""
+RAW_DATA = ""
+PP_DATA = ""
+GEN_DATA = ""
+TRANSCRIPTION = ""
+LABELS = ""
 
 # naming

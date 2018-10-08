@@ -29,14 +29,16 @@ TODO
 - Deploy simple demo with Tensorflow Serving
 - Simple API
 - Refactor code
-- Add Visual Callback
+- Add Visual Callback :heavy_check_mark:
+    - [callbacks.py](src/callbacks.py)
 - Train code with Colab's TPU?
 - Convert to Pytorch code
 
 Prevent Overfitting
 ---
 
-- Data Augmentation
+- Data Augmentation :heavy_check_mark:
+    - [data_utils.py](src/data_utils.py) and [datagen.py](src/datagen.py)
 - Simplifly the model
 - Early Stopping
 - Cross Validation
