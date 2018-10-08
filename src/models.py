@@ -1,5 +1,5 @@
 from keras import backend as K
-from keras.layers import (
+from keras.layers import (  # noqa
     Input, Dense, Activation,
     Reshape, Lambda, Dropout,
     Bidirectional, BatchNormalization
@@ -22,28 +22,23 @@ def CRNN_model():
     inner = Conv2D(16, (3, 3), padding='same',
                    activation=act, kernel_initializer='he_normal',
                    name='conv1')(input_data)
-    inner = MaxPooling2D(pool_size=(2, 2), name='max1')(
-        inner)
+    inner = MaxPooling2D(pool_size=(2, 2), name='max1')(inner)
     inner = Conv2D(32, (3, 3), padding='same',
                    activation=act, kernel_initializer='he_normal',
                    name='conv2')(inner)
-    inner = MaxPooling2D(pool_size=(2, 2), name='max2')(
-        inner)
+    inner = MaxPooling2D(pool_size=(2, 2), name='max2')(inner)
     inner = Conv2D(64, (3, 3), padding='same',
                    activation=act, kernel_initializer='he_normal',
                    name='conv3')(input_data)
-    inner = MaxPooling2D(pool_size=(2, 2), name='max3')(
-        inner)
+    inner = MaxPooling2D(pool_size=(2, 2), name='max3')(inner)
     inner = Conv2D(128, (3, 3), padding='same',
                    activation=act, kernel_initializer='he_normal',
                    name='conv4')(inner)
-    inner = MaxPooling2D(pool_size=(2, 2), name='max4')(
-        inner)
+    inner = MaxPooling2D(pool_size=(2, 2), name='max4')(inner)
     inner = Conv2D(256, (3, 3), padding='same',
                    activation=act, kernel_initializer='he_normal',
                    name='conv5')(inner)
-    inner = MaxPooling2D(pool_size=(2, 2), name='max5')(
-        inner)
+    inner = MaxPooling2D(pool_size=(2, 2), name='max5')(inner)
 
     conv_to_rnn_dims = (256, 572)
 
