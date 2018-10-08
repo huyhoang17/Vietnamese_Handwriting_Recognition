@@ -163,7 +163,7 @@ def gen_data(path_dir, img, fn, reversed_img=True,
         img_np = scale(img_np)
         img_np = dilate(img_np)
         # img_np = erode(img_np)
-        imgs.append(img)
+        imgs.append(img_np)
 
         fn_new = name + "_{}".format(ind) + '.' + suffix
         if is_save:

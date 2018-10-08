@@ -7,6 +7,9 @@ import keras.callbacks
 import cv2
 
 import src.config as cf
+from src.data_utils import (
+    translate, rotate, shear, scale, dilate
+)
 from src.utils import text_to_labels
 from src.log import get_logger
 
@@ -18,7 +21,7 @@ class TextSequenceGenerator(keras.utils.Sequence):
 
     def __init__(self, samples, batch_size=16,
                  img_size=cf.IMAGE_SIZE, max_text_len=256,
-                 downsample_factor=4, shuffle=True):
+                 downsample_factor=4, training=True, shuffle=True):
         # train 95, test 5
         imgs, gt_texts = [], []
         for sample in samples:
@@ -38,6 +41,7 @@ class TextSequenceGenerator(keras.utils.Sequence):
         self.img_w, self.img_h = self.img_size
         self.batch_size = batch_size
         self.downsample_factor = downsample_factor
+        self.training = training
         self.shuffle = shuffle
         self.on_epoch_end()
 
@@ -52,10 +56,6 @@ class TextSequenceGenerator(keras.utils.Sequence):
 
         ids = [self.ids[k] for k in indexes]
 
-        # some images can not read with cv2.imread
-        # for id_ in [1820, 5915]:
-        #     if id_ in ids:
-        #         ids.remove(id_)
         X, y = self.__data_generation(ids)
 
         return X, y
@@ -65,6 +65,16 @@ class TextSequenceGenerator(keras.utils.Sequence):
         self.indexes = np.arange(len(self.ids))
         if self.shuffle:
             np.random.shuffle(self.indexes)
+
+    def gen_img(self, img):
+        img_np = translate(img)
+        img_np = rotate(img_np)
+        img_np = shear(img_np)
+        img_np = scale(img_np)
+        img_np = dilate(img_np)
+        # img_np = erode(img_np)
+
+        return img
 
     def __data_generation(self, ids):
         """Generates data containing batch_size samples"""
@@ -88,11 +98,12 @@ class TextSequenceGenerator(keras.utils.Sequence):
         # Generate data
         for i, id_ in enumerate(ids):
 
-            img = cv2.imread(self.imgs[id_], cv2.IMREAD_GRAYSCALE)  # (h, w)
-            if img is None:
-                continue
-            # img = 255 - img  # bg: black, text: white
             # bg: white, text: black
+            img = cv2.imread(self.imgs[id_], cv2.IMREAD_GRAYSCALE)  # (h, w)
+
+            if self.training:
+                img = self.gen_img(img)
+
             ratio = img.shape[0] / self.img_h
             new_w = int(img.shape[1] / ratio) + 1
             resized_image = cv2.resize(img, (new_w, self.img_h))  # (h, w)
