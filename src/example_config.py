@@ -36,6 +36,6 @@ RAW_DATA = ""
 PP_DATA = ""
 GEN_DATA = ""
 TRANSCRIPTION = ""
-LABELS = ""
+TRANSGEN = ""
 
 # naming

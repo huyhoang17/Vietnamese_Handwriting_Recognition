@@ -34,6 +34,19 @@ def train():
         downsample_factor=4,
         shuffle=False
     )
+    from src.loaders import TextSequenceGeneratorAugmentation  # noqa
+    train_set = TextSequenceGeneratorAugmentation(
+        data[:no_train_set], mode="train",
+        img_size=cf.IMAGE_SIZE, max_text_len=cf.MAX_LEN_TEXT,
+        downsample_factor=4,
+        shuffle=True
+    )
+    test_set = TextSequenceGeneratorAugmentation(
+        data[no_train_set:], mode="test",
+        img_size=cf.IMAGE_SIZE, max_text_len=cf.MAX_LEN_TEXT,
+        downsample_factor=4,
+        shuffle=False
+    )
 
     model, y_func = CRNN_model()
 

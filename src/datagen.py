@@ -25,13 +25,14 @@ def gen_data_augment():
 
     for ind, fn_path in enumerate(fn_paths):
         fn = fn_path.split('/')[-1]
-        maps.append({fn: gt_texts[ind]})
 
+        logger.info("save image %s: %s", ind, fn)
         try:
             main_img = cv2.imread(fn_path, cv2.IMREAD_GRAYSCALE)
         except Exception as e:
             logger.info("Error id: %d", ind)
             logger.error(e)
+            continue
         scipy.misc.imsave(
             os.path.join(cf.GEN_DATA, fn), main_img
         )
@@ -39,10 +40,13 @@ def gen_data_augment():
             cf.GEN_DATA, main_img, fn, reversed_img=False,
             is_save=True, return_img=False
         )
+        maps.append({fn: gt_texts[ind]})
         for fn_ in fns:
             maps.append({fn_: gt_texts[ind]})
 
-    pickle.dump(maps, cf.LABELS)
+    with open(cf.TRANSGEN, 'wb') as f:
+        pickle.dump(maps, f)
+        logger.info("Dump to file completed")
 
 
 if __name__ == '__main__':
