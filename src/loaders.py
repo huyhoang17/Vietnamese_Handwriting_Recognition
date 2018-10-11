@@ -158,7 +158,7 @@ class TextSequenceGeneratorAugmentation(keras.utils.Sequence):
         gen_imgs = []
         gen_gt_texts = []
 
-        if mode == "train":
+        if self.mode == "train":
             self.len_sample = len(self.imgs) * (no_gen_imgs + 1)
             for i, img in enumerate(self.imgs):
                 for _ in range(self.len_sample):
@@ -227,7 +227,7 @@ class TextSequenceGeneratorAugmentation(keras.utils.Sequence):
 
     def __data_generation(self, ids):
         """Generates data containing batch_size samples"""
-        for i, id_ in enumerate(ids):
+        for id_ in ids:
             img = cv2.imread(self.imgs[id_], cv2.IMREAD_GRAYSCALE)
             if img is None:
                 ids.remove(id_)
