@@ -249,7 +249,7 @@ class TextSequenceGeneratorAugmentation(keras.utils.Sequence):
             img = cv2.imread(self.imgs[id_], cv2.IMREAD_GRAYSCALE)  # (h, w)
 
             if self.mode == "train":
-                img = self.__data_generation(img)
+                img = self.__gen_img(img)
 
             img = self.__make_fixed_img(img)
 
