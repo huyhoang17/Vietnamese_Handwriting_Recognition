@@ -66,16 +66,6 @@ class TextSequenceGenerator(keras.utils.Sequence):
         if self.shuffle:
             np.random.shuffle(self.indexes)
 
-    def gen_img(self, img):
-        img_np = translate(img)
-        img_np = rotate(img_np)
-        img_np = shear(img_np)
-        img_np = scale(img_np)
-        img_np = dilate(img_np)
-        # img_np = erode(img_np)
-
-        return img
-
     def __data_generation(self, ids):
         """Generates data containing batch_size samples"""
         for i, id_ in enumerate(ids):
@@ -100,9 +90,6 @@ class TextSequenceGenerator(keras.utils.Sequence):
 
             # bg: white, text: black
             img = cv2.imread(self.imgs[id_], cv2.IMREAD_GRAYSCALE)  # (h, w)
-
-            if self.data_aug:
-                img = self.gen_img(img)
 
             ratio = img.shape[0] / self.img_h
             new_w = int(img.shape[1] / ratio) + 1
