@@ -39,6 +39,9 @@ Prevent Overfitting
 
 - Data Augmentation :heavy_check_mark:
     - [data_utils.py](src/data_utils.py) and [datagen.py](src/datagen.py)
+- Generate more data
+	- https://arxiv.org/abs/1308.0850
+	- https://arxiv.org/abs/1801.08624
 - Simplifly the model
 - Early Stopping
 - Cross Validation
@@ -54,6 +57,12 @@ Colab Notebook:
 
 Papers
 - https://arxiv.org/pdf/1804.01527.pdf
+- https://arxiv.org/abs/1801.08624
+- https://arxiv.org/abs/1308.0850
+	- Blog: https://greydanus.github.io/2016/08/21/handwriting/
+	- https://github.com/tensorflow/magenta/blob/master/magenta/reviews/summary_generation_sequences.md
+	- https://github.com/sjvasquez/handwriting-synthesis
+	- https://github.com/greydanus/scribe
 
 CTC loss:
 - https://www.dlology.com/blog/how-to-train-a-keras-model-to-recognize-variable-length-text/
