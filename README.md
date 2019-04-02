@@ -6,6 +6,8 @@
 Dataset
 ---
 
+- Vietnamese Handwriting Dataset: https://www.dropbox.com/s/zk82qkidkqma8bj/vn_handwriting_data.zip?dl=0
+
 Command
 ---
 
